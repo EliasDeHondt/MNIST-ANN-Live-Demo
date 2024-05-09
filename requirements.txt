@@ -3,10 +3,11 @@
 # @see https://eliasdh.com #
 # @since 09/05/2024        #
 ############################
+# FUNCTIE: This file is used to install the required packages for the project
 
 --extra-index-url https://google-coral.github.io/py-repo/
 
-numpy
-tflite_runtime
-flask
-gunicorn
+numpy==1.19.5
+tflite_runtime==2.5.0
+flask==2.0.1
+gunicorn==20.1.0

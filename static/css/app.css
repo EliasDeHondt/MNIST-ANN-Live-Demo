@@ -6,9 +6,7 @@
 
 /* Root */
 :root {
-  --dark: #0E0B17;
-  --light: #6c757d;
-  --grey: #AFAEB0;
+  --grey: #6c757d;
 
   --primary-color: #4f94f0;
   --primary-color-light: #6ba8f1;
@@ -22,6 +20,17 @@ body::-webkit-scrollbar {
 }
 /* Scrollbars */
 
+/* No select */
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* No select */
+
 /* Footer */
 #Bottom {
   left: 50%;
@@ -31,7 +40,7 @@ body::-webkit-scrollbar {
 
 /* General styles */
 body {
-  background-color: var(--dark);
+  background-color: #ffffff;
   font-family: 'arial', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px 10px;
 }
@@ -49,11 +58,15 @@ a:hover {
 }
 /* General styles */
 
-
 .app {
-  height: 100%;
+  height: 50%;
+  width: 50%;
   display: flex;
   flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .drawing_area {
@@ -65,12 +78,12 @@ a:hover {
   position: absolute;
   bottom: 20px;
   left: 20px;
-  height: 200px;
-  width: 300px;
+  height: 300px;
+  width: 400px;
 }
 
 .drawing_board {
-  background-color: var(--light);
+  background-color: var(--grey);
   border-radius: 8px;
   height: 100%;
   width: 100%;
@@ -141,10 +154,10 @@ a:hover {
 }
 
 .bar_graph .columns .category-active .bar .bar_progress {
-  background: var(--light);
+  background: var(--grey);
 }
 
 .bar_graph .columns .category-active .label {
-  color: var(--light);
+  color: var(--grey);
 }
 /* Bar graph styles */

@@ -10,7 +10,7 @@ const context = canvas.getContext("2d")
 predicted_results = []
 
 const stroke = {
-    color : "#000000",
+    color : "#4f94f0",
     size : 20
 }
 const frame_rate = 60
@@ -40,29 +40,17 @@ canvas.addEventListener("mousemove", e => {
     mouse_coord.y = (e.offsetY / canvas.offsetHeight) * canvas.height;
 
     if(mousedown) {
-        if (draw_rect.x_left == null) {
-            draw_rect.x_left = mouse_coord.x
-        } else {
-            draw_rect.x_left = Math.min(draw_rect.x_left, mouse_coord.x)
-        }
+        if (draw_rect.x_left == null) draw_rect.x_left = mouse_coord.x;
+        else draw_rect.x_left = Math.min(draw_rect.x_left, mouse_coord.x);
 
-        if (draw_rect.x_right == null) {
-            draw_rect.x_right = mouse_coord.x
-        } else {
-            draw_rect.x_right = Math.max(draw_rect.x_right, mouse_coord.x)
-        }
+        if (draw_rect.x_right == null) draw_rect.x_right = mouse_coord.x;
+        else draw_rect.x_right = Math.max(draw_rect.x_right, mouse_coord.x);
 
-        if (draw_rect.y_top == null) {
-            draw_rect.y_top = mouse_coord.y
-        } else {
-            draw_rect.y_top = Math.min(draw_rect.y_top, mouse_coord.y)
-        }
-    
-        if (draw_rect.y_bottom == null) {
-            draw_rect.y_bottom = mouse_coord.y
-        } else {
-            draw_rect.y_bottom = Math.max(draw_rect.y_bottom, mouse_coord.y)
-        }
+        if (draw_rect.y_top == null) draw_rect.y_top = mouse_coord.y;
+        else  draw_rect.y_top = Math.min(draw_rect.y_top, mouse_coord.y);
+
+        if (draw_rect.y_bottom == null) draw_rect.y_bottom = mouse_coord.y;
+        else draw_rect.y_bottom = Math.max(draw_rect.y_bottom, mouse_coord.y);
 
         box_width = draw_rect.x_right - draw_rect.x_left
         box_height = draw_rect.y_bottom - draw_rect.y_top
@@ -90,17 +78,13 @@ mouse_coord_sequence = {
 }
 
 function shift_mouse_coord_sequence() {
-    if (mouse_coord_sequence.current != null) {
-        mouse_coord_sequence.last = { ...mouse_coord_sequence.current }
-    }
+    if (mouse_coord_sequence.current != null) mouse_coord_sequence.last = { ...mouse_coord_sequence.current }
     mouse_coord_sequence.current = { ...mouse_coord }
 }
 
 
 function render_loop() {
-    if (mousedown) {
-        shift_mouse_coord_sequence();
-    } 
+    if (mousedown) shift_mouse_coord_sequence();
     if (!mousedown) {
         mouse_coord_sequence.last = null;
         mouse_coord_sequence.current = null;
@@ -125,7 +109,7 @@ function render_loop() {
 
 function clear_canvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    
+
     draw_rect.x_left = null;
     draw_rect.x_right = null;
     draw_rect.y_top = null;
@@ -139,10 +123,10 @@ function get_drawn_image() {
     return new Promise(resolve => {
         const compress_image_canvas = document.querySelector("#compress_image_canvas");
         const compress_image_context = compress_image_canvas.getContext("2d");
-        
+
         let compress_image = new Image();
         compress_image.src = canvas.toDataURL();
-    
+
         compress_image.onload = function() {
             padding = 20
             var sourceX = draw_rect.x_left - padding;
@@ -153,20 +137,10 @@ function get_drawn_image() {
             var destHeight = 28;
             var destX = 0;
             var destY = 0;
-    
+
             compress_image_context.clearRect(0, 0, destWidth, destHeight)
-            compress_image_context.drawImage(
-                compress_image, 
-                sourceX, 
-                sourceY, 
-                sourceWidth, 
-                sourceHeight, 
-                destX, 
-                destY, 
-                destWidth, 
-                destHeight
-            );
-            
+            compress_image_context.drawImage(compress_image, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+
             image_data = compress_image_context.getImageData(0, 0, destWidth, destHeight); 
             resolve(image_data.data)
         };
@@ -195,42 +169,30 @@ async function fetch_predicted_result() {
 function render_predicted_values() {
     if (predicted_results.length == 0) {
         bars = document.querySelectorAll(".bar_progress");
-        bars.forEach(bar => {
-            gsap.to(bar, {height: `1%`, duration: 1});
-        })
+        bars.forEach(bar => gsap.to(bar, {height: `1%`, duration: 1}));
 
         categories = document.querySelectorAll(".category");
-        categories.forEach(category => {
-            category.classList.remove("category-active")
-        });
+        categories.forEach(category => category.classList.remove("category-active"));
     }
 
-    max_predicted_result = Math.max(...predicted_results)
-    
+    max_predicted_result = Math.max(...predicted_results);
+
     percentage_predicted_result = []
     predicted_results.forEach(value => {
-        percentage = (value / max_predicted_result) * 100
-        if (percentage < 1) {
-            percentage = 1
-        }
+        percentage = (value / max_predicted_result) * 100;
+        if (percentage < 1) percentage = 1;
 
         percentage_predicted_result.push(percentage);
     })
 
     bars = document.querySelectorAll(".bar_progress");
-    bars.forEach((bar, index) => {
-        gsap.to(bar, {height: `${ percentage_predicted_result[index] }%`, duration: 1});
-    })
+    bars.forEach((bar, index) => gsap.to(bar, {height: `${ percentage_predicted_result[index] }%`, duration: 1}));
 
     categories = document.querySelectorAll(".category");
-    categories.forEach(category => {
-        category.classList.remove("category-active")
-    })
+    categories.forEach(category => {category.classList.remove("category-active")});
 
     max_predicted_result_index = predicted_results.indexOf(max_predicted_result);
-    if(max_predicted_result_index != -1) {
-        categories[max_predicted_result_index].classList.add("category-active")
-    }
+    if(max_predicted_result_index != -1) categories[max_predicted_result_index].classList.add("category-active");
 }
 
 setInterval(render_loop, (1000 / frame_rate))

@@ -15,16 +15,6 @@
         <!--Favicon-->
         <!--CSS-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
-        <style>
-            .noselect {
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-        </style>
         <!--CSS-->
     </head>
     <body>
@@ -34,69 +24,69 @@
                 <canvas class="drawing_board"></canvas>
                 <button class="btn clear" onclick="clear_canvas()">Clear</button>
             </div>
-            <div class="bar_graph_container">
-                <div class="bar_graph noselect">
-                    <div class="columns">
-                        <div class="category">
-                            <div class="bar">
-                                <div class="bar_progress"></div>
-                            </div>
-                            <div class="label">0</div>
+        </div>
+        <div class="bar_graph_container">
+            <div class="bar_graph noselect">
+                <div class="columns">
+                    <div class="category">
+                        <div class="bar">
+                            <div class="bar_progress"></div>
                         </div>
-                        <div class="category">
-                            <div class="bar">
-                                <div class="bar_progress"></div>
-                            </div>
-                            <div class="label">1</div>
+                        <div class="label">0</div>
+                    </div>
+                    <div class="category">
+                        <div class="bar">
+                            <div class="bar_progress"></div>
                         </div>
-                        <div class="category">
-                            <div class="bar">
-                                <div class="bar_progress"></div>
-                            </div>
-                            <div class="label">2</div>
+                        <div class="label">1</div>
+                    </div>
+                    <div class="category">
+                        <div class="bar">
+                            <div class="bar_progress"></div>
                         </div>
-                        <div class="category">
-                            <div class="bar">
-                                <div class="bar_progress"></div>
-                            </div>
-                            <div class="label">3</div>
+                        <div class="label">2</div>
+                    </div>
+                    <div class="category">
+                        <div class="bar">
+                            <div class="bar_progress"></div>
                         </div>
-                        <div class="category">
-                            <div class="bar">
-                                <div class="bar_progress"></div>
-                            </div>
-                            <div class="label">4</div>
+                        <div class="label">3</div>
+                    </div>
+                    <div class="category">
+                        <div class="bar">
+                            <div class="bar_progress"></div>
                         </div>
-                        <div class="category">
-                            <div class="bar">
-                                <div class="bar_progress"></div>
-                            </div>
-                            <div class="label">5</div>
+                        <div class="label">4</div>
+                    </div>
+                    <div class="category">
+                        <div class="bar">
+                            <div class="bar_progress"></div>
                         </div>
-                        <div class="category">
-                            <div class="bar">
-                                <div class="bar_progress" id="six"></div>
-                            </div>
-                            <div class="label">6</div>
+                        <div class="label">5</div>
+                    </div>
+                    <div class="category">
+                        <div class="bar">
+                            <div class="bar_progress" id="six"></div>
                         </div>
-                        <div class="category">
-                            <div class="bar">
-                                <div class="bar_progress" id="seven"></div>
-                            </div>
-                            <div class="label">7</div>
+                        <div class="label">6</div>
+                    </div>
+                    <div class="category">
+                        <div class="bar">
+                            <div class="bar_progress" id="seven"></div>
                         </div>
-                        <div class="category">
-                            <div class="bar">
-                                <div class="bar_progress" id="eight"></div>
-                            </div>
-                            <div class="label">8</div>
+                        <div class="label">7</div>
+                    </div>
+                    <div class="category">
+                        <div class="bar">
+                            <div class="bar_progress" id="eight"></div>
                         </div>
-                        <div class="category">
-                            <div class="bar">
-                                <div class="bar_progress" id="nine"></div>
-                            </div>
-                            <div class="label">9</div>
+                        <div class="label">8</div>
+                    </div>
+                    <div class="category">
+                        <div class="bar">
+                            <div class="bar_progress" id="nine"></div>
                         </div>
+                        <div class="label">9</div>
                     </div>
                 </div>
             </div>
