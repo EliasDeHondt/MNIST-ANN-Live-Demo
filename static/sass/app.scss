@@ -1,0 +1,127 @@
+$dark: #0E0B17;
+$light: #6c757d;
+$grey: #AFAEB0;
+
+$primary-color: #4f94f0;
+$primary-color_light: #6ba8f1;
+$primary-color_dark: #3b7ed8;
+
+/* General Styles */
+body {
+    background-color: $dark;
+    font-family: 'arial', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0px 10px;
+}
+
+body, html {
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+/* General Styles */
+
+.app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.drawing_area {
+    flex: 1;
+    margin: 0px 0px 10px 0px;
+}
+
+.bar_graph_container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    height: 200px;
+    width: 300px;
+}
+
+.drawing_board {
+    background-color: $light;
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+}
+
+.btn {
+    background: $primary-color;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.253);
+    cursor: pointer;
+}
+
+.btn:active {
+    background-color: $primary-color_dark;
+}
+
+.clear {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+/* Bar Graph Styles */
+.bar_graph {
+    height: 100%;
+    background: $primary-color;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.253);
+
+    .columns {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+
+        .category {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .bar {
+                flex: 1;
+                width: 25px;
+                display: flex;
+
+                .bar_progress {
+                    height: 1%;
+                    width: 100%;
+                    background: $primary-color_light;
+                    align-self: flex-end;
+                }
+            }
+
+            .label {
+                text-align: center;
+                margin-top: 7px;
+                font-weight: 600;
+                color: $primary-color_light;
+            }
+        }
+
+        .category-active {
+            .bar .bar_progress {
+                background: $light;
+            }
+            .label {
+                color: $light;
+            }
+        }
+    }
+}
+/* Bar Graph Styles */
