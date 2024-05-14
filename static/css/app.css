@@ -32,7 +32,7 @@ body::-webkit-scrollbar {
 /* No select */
 
 /* Footer */
-#Bottom {
+#footer {
   left: 50%;
   transform: translateX(-50%);
 }
